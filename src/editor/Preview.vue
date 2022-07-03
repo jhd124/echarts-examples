@@ -105,6 +105,9 @@
           <el-button icon="el-icon-download" size="mini" @click="download">
             {{ $t('editor.download') }}
           </el-button>
+          <el-button icon="el-icon-upload" size="mini" @click="upload">
+            {{ $t('editor.upload') }}
+          </el-button>
           <el-button
             @click="screenshot"
             icon="el-icon-camera-solid"
@@ -145,6 +148,7 @@ import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { download } from './downloadExample';
+import { upload } from './uploadExample';
 import { gotoURL, getURL } from '../common/route';
 import { gt } from 'semver';
 
@@ -403,12 +407,20 @@ export default {
         this.sandbox = null;
       }
     },
-    download() {
+    getFileSourceHeader() {
       const url = this.getSharableURL(true);
       const isShared = store.isSharedCode || url.searchParams.has('code');
       const headers = [`\tTHIS EXAMPLE WAS DOWNLOADED FROM ${url.toString()}`];
       isShared && headers.push('\t' + this.$t('editor.share.hint'));
-      download(headers.join('\n'));
+      return headers.join('\n');
+    },
+    download() {
+      const headers = this.getFileSourceHeader();
+      download(headers);
+    },
+    upload() {
+      const headers = this.getFileSourceHeader();
+      upload(headers);
     },
     screenshot() {
       this.sandbox &&

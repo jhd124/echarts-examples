@@ -21,6 +21,7 @@ export default {
       randomData: 'Random',
 
       download: 'Download',
+      upload: 'Upload',
       screenshot: 'Screenshot',
 
       edit: 'Edit',
@@ -47,7 +48,7 @@ export default {
         title: 'Share',
         success: 'Sharable URL has been copied to your clipboard',
         hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.'
-      },
+      }
     },
 
     chartTypes: {
@@ -113,6 +114,7 @@ export default {
       useDirtyRect: '开启脏矩形优化',
       renderer: '渲染模式',
       download: '下载示例',
+      upload: '上传示例',
       screenshot: '截图',
 
       edit: '编辑',
