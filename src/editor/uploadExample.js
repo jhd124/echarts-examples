@@ -7,8 +7,13 @@ export function upload(sourceHeader) {
   const formData = new FormData();
   formData.append('file', file, (URL_PARAMS.c || Date.now()) + '.html');
   const api = `https://www.laojing.cc/service/upload_file`;
-  fetch(api, {
+  return fetch(api, {
     method: 'POST',
-    body: formData
-  });
+    body: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+    .then((res) => res.json())
+    .then((res) => res.filepath);
 }

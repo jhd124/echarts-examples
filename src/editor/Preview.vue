@@ -420,7 +420,11 @@ export default {
     },
     upload() {
       const headers = this.getFileSourceHeader();
-      upload(headers);
+      upload(headers).then((res) => {
+        setTimeout(() => {
+          window.open(res);
+        }, 1500);
+      });
     },
     screenshot() {
       this.sandbox &&
